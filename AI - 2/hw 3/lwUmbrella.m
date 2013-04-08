@@ -6,7 +6,7 @@ R = []; % Hidden variable vector
 Weights = []; % Sample probability vector
 P = []; % probability set over each iteration
 
-for n = 1:200
+for iter = 1:20
     for n = 1:numSamples
         x = (rand >= 0.5)+1; % intial sample
         w = 1; % initalize weight of evidence
@@ -24,8 +24,8 @@ for n = 1:200
     w_f = sum(Weights(R==1));
     P = [P w_t/(w_t + w_f)];
 end
-P = mean(P);
 variance = var(P);
+P = mean(P);
 end
 
 %{
