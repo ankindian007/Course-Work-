@@ -1,0 +1,114 @@
+>> mdpVI(-0.01);mdpVI(-0.2);mdpVI(-2);
+1 1 u 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 l 
+4 1 d 
+3 1 l 
+2 1 l 
+
+grid =
+
+rrr 
+u l 
+ulld
+
+1 1 u 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 u 
+4 1 l 
+3 1 u 
+2 1 r 
+
+grid =
+
+rrr 
+u u 
+urul
+
+1 1 r 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 r 
+4 1 u 
+3 1 r 
+2 1 r 
+
+grid =
+
+rrr 
+
+>> mdpPI(-0.04)
+1 1 u 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 u 
+4 1 l 
+3 1 l 
+2 1 l 
+
+grid =
+
+rrr 
+u u 
+ulll
+
+>> mdpPI(-0.01)
+1 1 u 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 l 
+4 1 d 
+3 1 l 
+2 1 l 
+
+grid =
+
+rrr 
+u l 
+ulld
+
+>> mdpPI(-0.2)
+1 1 u 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 u 
+4 1 l 
+3 1 u 
+2 1 r 
+
+grid =
+
+rrr 
+u u 
+urul
+
+>> mdpPI(-2)
+1 1 r 
+1 2 u 
+1 3 r 
+2 3 r 
+3 3 r 
+3 2 r 
+4 1 u 
+3 1 r 
+2 1 r 
+
+grid =
+
+rrr 
+u r 
+rrru

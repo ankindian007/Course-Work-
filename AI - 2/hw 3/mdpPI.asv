@@ -5,33 +5,56 @@
     1 9 8 7
  %}
 
-function [] = mdpVI(reward) % reward is the reward function
-gamma=0.9999; e=0.001; T = buildTransMat();
+function [] = mdpPI(reward) % reward is the reward function
+T = buildTransMat();
 n = 11; R = [reward*ones(1,n-2) 1 -1]; % n is # of states
 U = zeros(n,1); U_nex = zeros(n,1);
+P = randi([1, 4],n,1);
+step=0; changed = 1;
+while changed==1
+    changed = 1;
+    U = policyEvaluation(U,T,R,P);
+    for s =1:n
+        %[temp,idx] = max(squeeze(T(s,:,:))*U_nex);
+        %if  temp > (squeeze(T(s,P(s),:))'*U_nex)             
+        [temp,idx] = max(squeeze(T(s,:,:))*U);
+        if  temp > (squeeze(T(s,P(s),:))'*U)             
+           P(s) = idx;
+           changed = 0;
+        end
+    end    
+    P'
+    step=step+1;
+end
+step
+%delta;
+%U'
+
+Policy = [1:9';P(1:9)']';
+printPolicy(Policy);
+end
+
+function [U] = policyEvaluation(U,T,R,P)
+gamma=0.9999; e=0.001; n = 11; 
+U_nex = U;
 step=0; check = e*(1-gamma)/gamma; delta=check;
-while delta >= check
+tic
+while step <10000 %delta >= check
     U = U_nex; delta=0;
     for s =1:n
-        
-        U_nex(s) = R(s) + gamma*max(squeeze(T(s,:,:))*U_nex);
-        %U_nex'
+        %T(s,P(s),:)
+        %size(T(s,P(s),:))
+        %size(squeeze(T(s,P(s),:)))
+        %size(U_nex)        
+        U_nex(s) = R(s) + gamma*(squeeze(T(s,P(s),:))'*U_nex);    
         diff = abs(U_nex(s)-U(s));
         if diff>delta, delta = diff; end
     end
     step=step+1;
 end
+%toc
 %step
-%delta;
 %U'
-
-Policy = [];
-for s = 1:9
-    [~,a] = max(squeeze(T(s,:,:))*U);
-    Policy = [Policy; s a];
-end
-
-printPolicy(Policy);
 end
 
 function [T] = buildTransMat()
@@ -105,7 +128,7 @@ for s = 1:9
     grid(grid_map(s,2), grid_map(s,3)) = action_map(Policy(s,2),2);
 end
 grid
-%Policy
+Policy
 end
 
 %{
